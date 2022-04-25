@@ -1,0 +1,11 @@
+! --- ~/.Xresources ------------------------------------------------------------
+
+! colors & stuff
+#include "dotfiles/colorschemes/foot_default"
+
+! modular time シ
+#include "dotfiles/xconfigs/fonts"
+#include "dotfiles/xconfigs/urxvt-settings"
+#include "dotfiles/xconfigs/xterm-settings"
+#include "dotfiles/xconfigs/misc-configs"
+

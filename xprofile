@@ -1,0 +1,12 @@
+#! /bin/sh
+
+xrdb -load $HOME/.Xresources
+
+if [ -x /usr/bin/numlockx ]; then
+      /usr/bin/numlockx on
+fi
+
+# Unlock keyring
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) &
+#export SSH_AUTH_SOCK
+

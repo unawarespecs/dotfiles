@@ -1,0 +1,123 @@
+#! /bin/sh
+#░█▀█░█░░░▀█▀░█▀█░█▀▀░█▀▀░█▀▀
+#░█▀█░█░░░░█░░█▀█░▀▀█░█▀▀░▀▀█
+#░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀
+# Terminal Aliases (For bash, zsh and other sh-compatible shells.)
+
+# general stuff
+# Some example alias instructions
+# If these are enabled they will be used instead of any instructions
+# they may mask.  For example, alias rm='rm -i' will mask the rm
+# application.  To override the alias instruction use a \ before, ie
+# \rm will call the real rm not the alias.
+
+# Interactive operation...
+alias rm='rm -iv'
+alias cp='cp -iv'
+alias mv='mv -iv'
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
+
+# Misc :)
+alias cls="clear"
+alias help="man"
+alias aliases="alias"
+alias edit='$EDITOR '
+
+# system info (Requires neofetch and/or screenfetch to be installed)
+alias fetch="clear && neofetch"
+if [[ $TERM_PROGRAM == "iTerm.app" ]]; then # neofetch iterm backend
+	alias fetchimg="clear && neofetch --backend iterm2"
+else
+	alias fetchsixel="clear && neofetch --sixel"
+	alias fetchkitty="clear && neofetch --backend kitty"
+	alias fetchimg="clear && neofetch --backend w3m"
+fi
+alias sfetch="clear && screenfetch -t"
+
+# ls aliases (colored output)
+if [ -d "/System/Library/CoreServices" ]; then # use /Applications to check if macOS is installed
+	alias ls="ls -hG"
+	alias lsa="ls -ahG"
+	alias ll="ls -lhG"
+	alias lla="ls -alhG"
+	alias dir="ls -lhG"
+	alias adir="ls -alhG"
+else
+	alias ls="ls -h --color=auto"
+	alias lsa="ls -ah --color=auto"
+	alias ll="ls -lh --color=auto"
+	alias lla="ls -alh --color=auto"
+	alias dir="ls -lh --color=auto"
+	alias adir="ls -alh --color=auto"
+fi
+
+# Package manager aliases
+if [ -f "/bin/apt-cyg" ]; then # Cygwin
+	alias inst="apt-cyg install $@"
+	alias apt="apt-cyg "
+elif [ -f "/usr/bin/pacman" ]; then # Arch + AUR
+	alias inst="sudo pacman -S $@"
+	alias uninst="sudo pacman -R $@"
+	alias uninstwithdep="sudo pacman -Rs $@"
+	alias purge="sudo pacman -Rn $@"
+	alias upgrade="sudo pacman -Syu"
+	alias searchpkg="pacman -Ss $@"
+	alias instaur="paru -S $@"
+	alias uninstaur="paru -R $@"
+	alias upgraur="paru -Syua"
+elif [ -f "/usr/local/bin/brew" ]; then # macOS Brew
+	alias inst="brew install $@"
+	alias instcask="brew cask install $@"
+	alias uninst="brew uninstall $@"
+	alias searchpkg="brew search $@"
+	alias brewdoc="brew doctor"
+	alias upgrade="brew update && brew upgrade"
+elif [ -f "/usr/bin/dpkg" ]; then # Ubuntu/Debian
+	alias inst="sudo apt install $@"
+	alias uninst="sudo apt remove $@"
+	alias searchpkg="apt search $@"
+	alias purge="sudo apt remove --purge $@"
+	alias upgrade="sudo apt update && sudo apt upgrade"
+	alias full-upgrade="sudo apt update && sudo apt full-upgrade"
+elif [ -f "/usr/bin/xbps-install" ]; then # Void Linux
+	alias inst="sudo xbps-install -S $@"
+	alias uninst="sudo xbps-remove $@"
+	alias searchpkg="xbps-query -Rs $@"
+	alias upgrade="sudo xbps-install -Su"
+fi
+
+# snap packages
+if [ -f "/usr/bin/snap" ]; then
+	alias instsnap="sudo snap install $@"
+	alias uninstsnap="sudo snap remove $@"
+	alias findsnap="snap find $@"
+	alias updsnap="sudo snap refresh"
+fi
+
+# flatpak packages
+if [ -f "/usr/bin/flatpak" ]; then
+	alias instflat="flatpak install $@"
+	alias uninstflat="flatpak uninstall $@"
+	alias updflat="flatpak update"
+	alias findflat="flatpak search $@"
+	alias runflat="flatpak run $@"
+fi
+
+# for wsl
+if [ -f "/mnt/c/Windows/explorer.exe" ]; then
+	alias explorer="/mnt/c/Windows/explorer.exe $@"
+	alias cmd32="/mnt/c/Windows/SysWOW64/cmd.exe $@"
+	alias cmd="/mnt/c/Windows/System32/cmd.exe $@"
+	alias powershell="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe $@"
+	alias pwshcore="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe $@"
+fi
+
+genpasswd() {
+      	tr -dc A-Za-z0-9_\{\}\[\]\!\@\#\$\%\&\?\<\> < /dev/urandom | head -c $1 | xargs
+}
+
+alias genie-off="genie -v -u"
+alias genie-on="genie -v -s"
