@@ -1,0 +1,56 @@
+song_status_format = "{%a - %t}"
+song_list_format = "{%a - %t} $R {%l}"
+song_window_title_format = "{%a - }{%t}|{%f}"
+
+mpd_music_dir = "/home/haru/Music"
+external_editor = "vim"
+user_interface = "classic"
+playlist_display_mode = "classic"
+
+message_delay_time = "1"
+playlist_disable_highlight_delay = 1
+
+now_playing_prefix = "$(24)"
+now_playing_suffix = "$0"
+selected_item_prefix = "$(125)"
+#current_item_prefix = "$(125)"
+current_item_prefix = "$(125)$r"
+browser_playlist_prefix = "$125»$125 "
+
+colors_enabled = "yes"
+cyclic_scrolling = "yes"
+use_console_editor = "yes"
+discard_colors_if_item_is_selected = "yes"
+
+header_visibility = "no"
+titles_visibility = "no"
+statusbar_visibility = "yes"
+display_remaining_time = "yes"
+
+volume_color = "125"
+statusbar_color = "125"
+header_window_color = "125"
+main_window_color = "125"
+empty_tag_color = "125"
+color2 = "4"
+
+color1 = "white"
+state_line_color = "white"
+state_flags_color = "white"
+window_border_color = "white"
+active_window_border = "cyan"
+alternative_ui_separator_color = "black"
+
+progressbar_color = "125"
+progressbar_look = "   "
+progressbar_elapsed_color = "130"
+
+visualizer_in_stereo = "no"
+visualizer_fifo_path = "/tmp/mpd_fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "30"
+visualizer_look = "○▋"
+visualizer_type = "spectrum" (spectrum/wave)
+visualizer_color = 85,85,85,85,85,85,85,85,85,85,85
+
+execute_on_song_change = "~/.orw/scripts/song_notification.sh"

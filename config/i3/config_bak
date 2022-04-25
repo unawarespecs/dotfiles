@@ -1,0 +1,257 @@
+# i3 config file (v4)
+# vim:filetype=conf
+
+# ---------------------
+# General Configuration
+# ---------------------
+
+# Colors, fonts & border setup
+font pango:monospace, FontAwesome, Siji 9, kakwa kakwafont 8
+new_window normal 0 px
+new_float normal 0 px
+for_window [class="^.*"] border pixel 2
+gaps inner 10
+gaps outer 0
+
+# Grab colors from Xresources
+set_from_resource $blk     color0     #000000
+set_from_resource $blk2    color8     #000000
+set_from_resource $red     color1     #000000
+set_from_resource $red2    color9     #000000
+set_from_resource $grn     color2     #000000
+set_from_resource $grn2    color10    #000000
+set_from_resource $ylw     color3     #000000
+set_from_resource $ylw2    color11    #000000
+set_from_resource $blu     color4     #000000
+set_from_resource $blu2    color12    #000000
+set_from_resource $mag     color5     #000000
+set_from_resource $mag2    color13    #000000
+set_from_resource $cya     color6     #000000
+set_from_resource $cya2    color14    #000000
+set_from_resource $wht     color7     #000000
+set_from_resource $wht2    color15    #000000
+set_from_resource $bgr     background #000000
+set_from_resource $fgr     foreground #000000
+
+# initialize Xresources
+exec_always --no-startup-id "xrdb -load ~/.Xresources"
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $bgr    $bgr    $wht2   $bgr      $bgr
+client.focused_inactive $blk2   $blk2   $wht2   $blk2     $blk2      
+client.unfocused        $blk2   $blk2   $wht2   $blk2     $blk2    
+client.urgent           $red2   $red2   $wht2   $red2     $red2
+client.background       $bgr
+
+# Define workspaces
+set $ws1 "misc"
+set $ws2 "web"
+set $ws3 "util"
+set $ws4 "work"
+set $ws5 "media"
+set $ws6 "game"
+set $ws7 "other"
+
+# open applications on specific workspaces
+assign [class="Chromium|Google-chrome|Microsoft-edge-dev"] $ws2
+assign [class="firefox|firefoxNightly" instance="Navigator"] $ws2
+assign [class="Epiphany"] $ws2
+
+assign [class="qBittorrent"] $ws3
+
+assign [class="libreoffice-calc|libreoffice-impress|libreoffice-writer"] $ws4
+
+assign [class="Gimp-2.8"] $ws5
+assign [class="Spotify" instance="spotify"] $ws5
+
+assign [class="Minecraft"] $ws6
+
+assign [class="Steam"] $ws7
+assign [class="Wine" instance="Steam.exe"] $ws7
+
+# Specific window parameters
+for_window [class="Wine" instance="Steam.exe"] border pixel 0
+for_window [class="Wine" instance="Steam.exe"] floating enable
+for_window [class="Steam"] border pixel 0
+for_window [class="Steam"] floating enable
+for_window [class="Wine"] floating enable
+for_window [class="Gimp-2.8"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Eog"] floating enable
+for_window [class="Lxappearance"] floating enable
+for_window [class="Vlc"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="System-config-printer.py"] floating enable
+
+# --------
+# Keybinds
+# --------
+
+# Set some variables for keybinds
+set $up k
+set $down j
+set $left h
+set $right l
+set $win Mod4
+
+# Use windows key (Super key) to move windows
+floating_modifier $win
+
+# start a terminal
+bindsym Mod1+Return exec kitty
+
+# kill focused window (Alt+F4 works!)
+bindsym Mod1+Shift+q kill
+bindsym Mod1+F4 kill
+
+# Program launcher & dmenu
+bindsym $win+space exec --no-startup-id j4-dmenu-desktop --dmenu="rofi -dmenu -i" --no-generic --term=urxvt 
+bindsym Mod1+d exec --no-startup-id rofi -show run
+bindsym Mod1+F2 exec --no-startup-id xfce4-appfinder
+
+# change focus
+bindsym Mod1+$left focus left
+bindsym Mod1+$down focus down
+bindsym Mod1+$up focus up
+bindsym Mod1+$right focus right
+
+# move focused window
+bindsym Mod1+Shift+$left move left
+bindsym Mod1+Shift+$down move down
+bindsym Mod1+Shift+$up move up
+bindsym Mod1+Shift+$right move right
+
+# split in horizontal orientation
+bindsym Mod1+b split h
+
+# split in vertical orientation
+bindsym Mod1+v split v
+
+# enter fullscreen mode for the focused container
+bindsym Mod1+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $win+s layout stacking
+bindsym $win+w layout tabbed
+bindsym $win+e layout toggle split
+
+# toggle tiling / floating
+bindsym Mod1+s floating toggle
+
+# change focus between tiling / floating windows
+bindsym Mod1+space focus mode_toggle
+
+# focus the parent or child container
+bindsym Mod1+a focus parent
+bindsym Mod1+Shift+a focus child
+
+# move the currently focused window to the scratchpad
+bindsym Mod1+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+bindsym Mod1+minus scratchpad show
+
+# switch to workspace
+bindsym Mod1+1 workspace $ws1
+bindsym Mod1+2 workspace $ws2
+bindsym Mod1+3 workspace $ws3
+bindsym Mod1+4 workspace $ws4
+bindsym Mod1+5 workspace $ws5
+bindsym Mod1+6 workspace $ws6
+bindsym Mod1+7 workspace $ws7
+# bindsym Mod1+8 workspace $ws8
+# bindsym Mod1+9 workspace $ws9
+
+# move focused container to workspace
+bindsym Mod1+Shift+1 move container to workspace $ws1
+bindsym Mod1+Shift+2 move container to workspace $ws2
+bindsym Mod1+Shift+3 move container to workspace $ws3
+bindsym Mod1+Shift+4 move container to workspace $ws4
+bindsym Mod1+Shift+5 move container to workspace $ws5
+bindsym Mod1+Shift+6 move container to workspace $ws6
+bindsym Mod1+Shift+7 move container to workspace $ws7
+# bindsym Mod1+Shift+8 move container to workspace $ws8
+# bindsym Mod1+Shift+9 move container to workspace $ws9
+
+# quick workspace change (Similar to bspwm)
+bindsym $win+Mod1+bracketleft workspace prev
+bindsym $win+Mod1+bracketright workspace next
+
+# Restart i3, exit i3, lock, and quick power options
+bindsym Mod1+Shift+r restart
+bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'Do you REALLY want to exit i3?'  -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $win+Mod1+Escape exec --no-startup-id ~/.config/i3/dmenu_logout
+bindsym $win+l exec --no-startup-id i3lock-fancy
+
+# resize window (you can also use the mouse for that)
+mode "res" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 5 px or 5 ppt
+        bindsym $down       resize grow height 5 px or 5 ppt
+        bindsym $up         resize shrink height 5 px or 5 ppt
+        bindsym $right      resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 5 px or 5 ppt
+        bindsym Down        resize grow height 5 px or 5 ppt
+        bindsym Up          resize shrink height 5 px or 5 ppt
+        bindsym Right       resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym Mod1+r mode "res"
+
+# media keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id volctrl 1
+bindsym XF86AudioLowerVolume exec --no-startup-id volctrl 0 
+bindsym XF86AudioMute exec --no-startup-id volctrl -1
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +5% # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 5%- # decrease screen brightness
+
+# Quick programs launch
+bindsym XF86WWW exec firefox
+bindsym $win+Mod1+1 exec nautilus
+bindsym $win+Mod1+2 exec firefox
+bindsym $win+Mod1+9 exec pavucontrol
+bindsym Mod1+Tab exec --no-startup-id "quickswitch -C Polybar,Xfce4-panel" 
+
+# -----
+# Other
+# -----
+
+# Autostart programs
+exec_always --no-startup-id "sh -c ~/.fehbg"
+exec --no-startup-id xset m 00
+
+# Autostart daemons
+exec_always --no-startup-id /usr/bin/compton -cCfb
+#exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+exec --no-startup-id /usr/bin/ibus-daemon -r --xim -n i3
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id /usr/bin/xfce4-volumed-pulse
+exec --no-startup-id /usr/bin/nm-applet
+exec --no-startup-id /usr/bin/redshift-gtk
+#exec --no-startup-id /usr/bin/mpd
+#exec --no-startup-id /usr/local/bin/mpDris2
+
+
+# Launch bar
+bar {
+	i3bar_command "$HOME/.config/i3/polybar.sh"
+}
+
