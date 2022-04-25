@@ -1,0 +1,20 @@
+
+! urxvt settings
+URxvt*termName:					xterm-256color
+URxvt*geometry:					110x30
+URxvt*cursorBlink:				true
+URxvt*cursorUnderline:				true
+URxvt.inputMethod:				ibus
+URxvt.preeditType:				OverTheSpot
+URxvt*dynamicColors:				on
+URxvt.scrollstyle:				plain
+URxvt.scrollBar:				false
+URxvt*scrollTtyOutput:				false
+URxvt*scrollWidthBuffer:			true
+URxvt*scrollTtyKeypress:			true
+URxvt.iso14755:					false
+URxvt*utf8:					true
+URxvt.perl-ext-common:				default,matcher,resize-font,url-select,keyboard-select
+URxvt.url-select.launcher:			linkhandler
+URxvt.url-select.underline:			true
+URxvt.url-launcher:				linkhandler

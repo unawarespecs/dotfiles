@@ -1,0 +1,15 @@
+! Xft font config
+Xft.antialias:  true 
+Xft.autohint:   false 
+Xft.dpi:        120
+Xft.hinting:    true 
+Xft.hintstyle:  hintslight
+!Xft.lcdfilter:  lcddefault
+Xft.rgba:       rgb
+
+! term fonts (Test fonts by "printf '\e]710 ;%s\007' "xft:monospace:pixelsize=12"")
+URxvt*font:                         xft:Cascadia Code:pixelsize=14, xft:Sazanami Gothic:pixelsize=12, xft:Terminus
+URxvt*boldFont:                     xft:Cascadia Code:Bold:pixelsize=14, xft:Sazanami Gothic:Bold:pixelsize=12, xft:Terminus
+XTerm*font:                         xft:Cascadia Code:pixelsize=14
+XTerm*boldFont:                     xft:Cascadia Code:Bold:pixelsize=14
+

@@ -1,0 +1,12 @@
+! rofi
+rofi.lines:                         16
+rofi.color-enabled:                 true
+rofi.separator-style:               none 
+rofi.width:                         60
+rofi.font:                          sf mono regular 12
+
+! rofi colors
+rofi.color-normal:                  argb:00000000, #8b4779, argb:00000000, #16101b,#ffffff
+rofi.color-urgent:                  argb:00000000, #8b4779, argb:00000000, #16101b,#ffffff
+rofi.color-active:                  argb:00000000, #8b4779, argb:00000000, #16101b,#ffffff
+rofi.color-window:                  argb:ee0f0a13, #000,#fbdeff
