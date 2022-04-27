@@ -90,3 +90,4 @@ case $TERM in
 	;;
 esac
 
+export GPG_TTY=$(tty)
