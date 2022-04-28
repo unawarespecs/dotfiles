@@ -1,0 +1,14 @@
+configuration {
+	modi: "run,drun,combi";
+	width: 40;
+	lines: 12;
+	font: "Iosevka Custom Regular 14";
+	separator-style: "none";
+	show-icons: true;
+	icon-theme: "Papirus-Dark";
+	color-normal: "argb:00000000, #8b4779, argb:00000000, #16101b,#ffffff";
+	color-urgent: "argb:00000000, #8b4779, argb:00000000, #16101b,#ffffff";
+	color-active: "argb:00000000, #8b4779, argb:00000000, #16101b,#ffffff";
+	color-window: "argb:ee0f0a13, #000, #fbdeff";
+}
+/* vim:ft=css

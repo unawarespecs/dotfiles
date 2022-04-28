@@ -1,0 +1,244 @@
+# sway config file
+# vim:filetype=conf
+
+### Fonts & border setup
+    font pango:Iosevka Custom 9
+    default_border pixel 0 px
+    default_floating_border pixel 0 px
+    for_window [class="^.*"] border pixel 2
+    gaps inner 10
+    gaps outer 0
+#
+
+### Colors & themes
+    exec_always $HOME/.local/bin/import-gsettings
+    exec_always $HOME/.config/sway/autostart
+    # class                     border  backgr. text    indicator child_border
+    client.focused              #111111 #111111 #ffffff #111111 #111111
+    client.unfocused            #666666 #666666 #ffffff #666666 #666666
+    client.focused_inactive     #666666 #666666 #ffffff #666666 #666666
+#
+
+### Define workspaces
+    set $ws1 "misc"
+    set $ws2 "web"
+    set $ws3 "util"
+    set $ws4 "work"
+    set $ws5 "media"
+    set $ws6 "game"
+    set $ws7 "other"
+#
+
+### Open applications on specific workspaces
+    assign [class="Chromium"] $ws2
+    assign [class="Google-chrome"] $ws2
+    assign [class="Microsoft-edge-dev"] $ws2
+    assign [class="Firefox|Firefox-esr" instance="Navigator"] $ws2
+    assign [class="Epiphany"] $ws2
+
+    assign [class="qBittorrent"] $ws3
+
+    assign [class="libreoffice-calc|libreoffice-impress|libreoffice-writer"] $ws4
+
+    assign [class="Gimp-2.10"] $ws5
+    assign [class="Spotify" instance="spotify"] $ws5
+
+    # Specific window parameters
+    for_window [class="Pavucontrol"] floating enable
+    for_window [class="Eog"] floating enable
+    for_window [class="Vlc"] floating enable
+#
+
+# Logo key. Use Mod1 for Alt.
+set $win Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term kitty
+set $menu dmenu_path | rofi -dmenu | xargs swaymsg exec --
+set $drun rofi -show drun | xargs swaymsg exec --
+
+include /etc/sway/config-vars.d/*
+
+output "*" bg "$HOME/Pictures/pop_wallpapers/original/tim-mccartney-39907.jpg " fill
+
+### Input configuration
+    input type:touchpad {
+        tap enabled
+        natural_scroll enabled
+    }
+    # You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
+
+### Key bindings
+
+    # Start a terminal
+    bindsym Mod1+Return exec $term
+
+    # Kill focused window
+    bindsym Mod1+F4 kill
+    bindsym Mod1+Shift+q kill
+
+    # Start your launcher
+    bindsym Mod1+d exec $menu
+
+    # Lock
+    bindsym $win+l exec --no-startup-id swaylock
+
+    # Floating windows
+    floating_modifier $win normal
+
+    # Reload the configuration file
+    bindsym Mod1+Shift+r reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym Mod1+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+    # Quick programs launch
+    bindsym $win+Mod1+1 exec nautilus
+    bindsym $win+Mod1+2 exec firefox
+    bindsym $win+Mod1+9 exec pavucontrol
+#
+
+### Moving around:
+    # Move your focus around
+    bindsym Mod1+$left focus left
+    bindsym Mod1+$down focus down
+    bindsym Mod1+$up focus up
+    bindsym Mod1+$right focus right
+
+    # Or use Mod1+[up|down|left|right]
+    bindsym Mod1+Left focus left
+    bindsym Mod1+Down focus down
+    bindsym Mod1+Up focus up
+    bindsym Mod1+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym Mod1+Shift+$left move left
+    bindsym Mod1+Shift+$down move down
+    bindsym Mod1+Shift+$up move up
+    bindsym Mod1+Shift+$right move right
+
+    # Ditto, with arrow keys
+    bindsym Mod1+Shift+Left move left
+    bindsym Mod1+Shift+Down move down
+    bindsym Mod1+Shift+Up move up
+    bindsym Mod1+Shift+Right move right
+#
+
+### Workspaces:
+    # Switch to workspace
+    bindsym Mod1+1 workspace $ws1
+    bindsym Mod1+2 workspace $ws2
+    bindsym Mod1+3 workspace $ws3
+    bindsym Mod1+4 workspace $ws4
+    bindsym Mod1+5 workspace $ws5
+    bindsym Mod1+6 workspace $ws6
+    bindsym Mod1+7 workspace $ws7
+
+    # Move focused container to workspace
+    bindsym Mod1+Shift+1 move container to workspace $ws1
+    bindsym Mod1+Shift+2 move container to workspace $ws2
+    bindsym Mod1+Shift+3 move container to workspace $ws3
+    bindsym Mod1+Shift+4 move container to workspace $ws4
+    bindsym Mod1+Shift+5 move container to workspace $ws5
+    bindsym Mod1+Shift+6 move container to workspace $ws6
+    bindsym Mod1+Shift+7 move container to workspace $ws7
+    # Note: workspaces can have any name you want, not just numbers.
+
+    bindsym $win+Mod1+bracketleft workspace prev
+    bindsym $win+Mod1+bracketright workspace next
+#
+
+### Layout stuff:
+    # You can "split" the current object of your focus with
+    # Mod1+b or Mod1+v, for horizontal and vertical splits
+    # respectively.
+    bindsym Mod1+b splith
+    bindsym Mod1+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $win+s layout stacking
+    bindsym $win+w layout tabbed
+    bindsym $win+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym Mod1+f fullscreen toggle
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym Mod1+s floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym Mod1+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym Mod1+a focus parent
+    bindsym Mod1+Shift+a focus child
+
+    # app launcher
+    #bindsym $win+space exec --no-startup-id $HOME/dotfiles/config/waybar/scripts/wofi.sh
+    bindsym $win+space exec --no-startup-id $drun
+#
+
+
+### Scratchpad:
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym Mod1+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym Mod1+minus scratchpad show
+#
+
+### Other bindings
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86AudioPlay exec playerctl -p mpd play-pause
+bindsym XF86AudioNext exec playerctl -p mpd next
+bindsym XF86AudioPrev exec playerctl -p mpd previous
+#
+
+### Resizing containers:
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 5px
+    bindsym $down resize grow height 5px
+    bindsym $up resize shrink height 5px
+    bindsym $right resize grow width 5px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 5px
+    bindsym Down resize grow height 5px
+    bindsym Up resize shrink height 5px
+    bindsym Right resize grow width 5px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym Mod1+r mode "resize"
+
+### Autostart daemons
+    exec --no-startup-id /usr/bin/mako
+    exec --no-startup-id /usr/bin/sway-alttab
+    exec --no-startup-id /usr/bin/gammastep -l 14:121 -t 6500K:3000K
+    exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    exec --no-startup-id /usr/bin/nm-tray
+#
+
+### Status bar
+bar {
+	swaybar_command "/usr/bin/waybar"
+}

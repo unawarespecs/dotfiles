@@ -98,3 +98,4 @@ esac
 
 # thefuck plugin
 eval "$(thefuck --alias)"
+export GPG_TTY=$(tty)
