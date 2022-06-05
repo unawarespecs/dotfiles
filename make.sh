@@ -6,9 +6,28 @@
 
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
-files="config/neofetch config/fontconfig config/mpd config/ncmpcpp aliases bash_profile dircolors dircolors_256 profile bashrc xinitrc xprofile Xresources zshenv vimrc zshrc"    # list of files/folders to symlink in homedir
+dir=~/dotfiles        # dotfiles directory
+olddir=~/dotfiles_old # old dotfiles backup directory
+
+files="config/neofetch 
+       config/fontconfig
+       config/i3 
+       config/mpd 
+       config/ncmpcpp 
+       config/kitty 
+       aliases 
+       bash_profile 
+       colors
+       dircolors 
+       dircolors_256 
+       profile 
+       bashrc 
+       xinitrc 
+       xprofile 
+       Xresources 
+       zshenv 
+       vimrc 
+       zshrc"
 
 ##########
 
@@ -22,7 +41,7 @@ echo "Changing to the $dir directory"
 cd $dir
 echo "...done"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
+# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 for file in $files; do
     echo "Moving any existing dotfiles from ~ to $olddir"
     mv ~/.$file ~/dotfiles_old/
