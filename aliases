@@ -106,19 +106,6 @@ if [ -f "/usr/bin/flatpak" ]; then
 	alias runflat="flatpak run $@"
 fi
 
-# for wsl
-if [ -f "/mnt/c/Windows/explorer.exe" ]; then
-	alias explorer="/mnt/c/Windows/explorer.exe $@"
-	alias cmd32="/mnt/c/Windows/SysWOW64/cmd.exe $@"
-	alias cmd="/mnt/c/Windows/System32/cmd.exe $@"
-	alias powershell="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe $@"
-	alias pwshcore="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe $@"
-	alias code="/mnt/c/Users/Haru/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe $@"
-fi
-
 genpasswd() {
       	tr -dc A-Za-z0-9_\{\}\[\]\!\@\#\$\%\&\?\<\> < /dev/urandom | head -c $1 | xargs
 }
-
-alias genie-off="genie -v -u"
-alias genie-on="genie -v -s"

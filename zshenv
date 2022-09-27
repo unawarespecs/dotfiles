@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 #  ~/.zshenv
 
-export PATH=$PATH:/mnt/c/Windows/System32:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin
 export EDITOR=/usr/bin/vim
 #export GDK_SCALE=1.25
 #export QT_AUTO_SCREEN_SCALE_FACTOR=1
