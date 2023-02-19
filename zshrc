@@ -27,7 +27,7 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
 	DISABLE_UPDATE_PROMPT="true"
 	DISABLE_AUTO_TITLE="true"
 	COMPLETION_WAITING_DOTS="true"
-	plugins=(git ubuntu colored-man-pages thefuck zsh-syntax-highlighting)
+	plugins=(git brew colored-man-pages thefuck zsh-syntax-highlighting)
 	source $ZSH/oh-my-zsh.sh
 fi
 
