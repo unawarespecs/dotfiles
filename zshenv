@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 #  ~/.zshenv
 
-export PATH=$PATH:$HOME/.local/bin:$HOME/Library/Python/3.9/bin:$HOME/Library/Python/3.11/bin:/usr/local/sbin:$HOME/.spicetify
+export PATH=$PATH:$HOME/.local/bin
 export EDITOR=/usr/bin/vim
 umask 022
 
