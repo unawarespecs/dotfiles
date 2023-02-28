@@ -19,7 +19,7 @@ this dotfiles setup has configs for:
 
 to recreate my setup, you need:
 - [oh my zsh](https://github.com/ohmyzsh/ohmyzsh)
-- [Vundle](https://github.com/VundleVim/Vundle.vim) for (neo)vim
+- [vim-plug](https://github.com/junegunn/vim-plug) for (neo)vim
 - [thefuck](https://github.com/nvbn/thefuck)
 - fortune (for quotes on shell launch)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
