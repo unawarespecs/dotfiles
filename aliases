@@ -70,7 +70,7 @@ elif [ -f "/usr/bin/pacman" ]; then # Arch + AUR
 	alias upgraur="paru -Syua"
 elif [ -f "/usr/local/bin/brew" ]; then # macOS Brew
 	alias inst="brew install $@"
-	alias instcask="brew cask install $@"
+	alias instcask="brew install --cask $@"
 	alias uninst="brew uninstall $@"
 	alias searchpkg="brew search $@"
 	alias brewdoc="brew doctor"
