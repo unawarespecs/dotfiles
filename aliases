@@ -19,46 +19,45 @@ alias du='du -h'
 # Misc :)
 alias cls="clear"
 alias help="man"
-alias edit='$EDITOR '
 
 # system info (Requires fastfetch to be installed)
 alias fetch="clear && fastfetch"
 
 # ls aliases (colored output)
-if [[ "$(uname -s)" == "Darwin" ]]; then
-	alias ls="ls -hG"
-	alias lsa="ls -ahG"
-	alias ll="ls -lhG"
-	alias lla="ls -alhG"
-	alias dir="ls -lhG"
-	alias adir="ls -alhG"
+if [[ "$(uname -s)" == "Darwin" ]]; then #autoswitch if using macos
+  alias ls="ls -hG"
+  alias lsa="ls -ahG"
+  alias ll="ls -lhG"
+  alias lla="ls -alhG"
+  alias dir="ls -lhG"
+  alias adir="ls -alhG"
 else
-	alias ls="ls -h --color=auto"
-	alias lsa="ls -ah --color=auto"
-	alias ll="ls -lh --color=auto"
-	alias lla="ls -alh --color=auto"
-	alias dir="ls -lh --color=auto"
-	alias adir="ls -alh --color=auto"
+  alias ls="ls -h --color=auto"
+  alias lsa="ls -ah --color=auto"
+  alias ll="ls -lh --color=auto"
+  alias lla="ls -alh --color=auto"
+  alias dir="ls -lh --color=auto"
+  alias adir="ls -alh --color=auto"
 fi
 
 # Package manager aliases
 pkg_install() {
   if [ -f "/usr/bin/pacman" ]; then #arch
     sudo pacman -S "$@"
-  elif [ -f "/usr/local/bin/brew" || -f "/opt/homebrew/bin/brew" ]; then #mac homebrew
+  elif [ -f "/usr/local/bin/brew" ] || [ -f "/opt/homebrew/bin/brew" ]; then #mac homebrew
     brew install "$@"
   elif [ -f "/usr/bin/dpkg" ]; then #debian/ubuntu
     sudo apt install "$@"
   elif [ -f "/usr/bin/xbps-install" ]; then #void
     sudo xbps-install -S "$@"
   elif [ -f "/usr/bin/dnf" ]; then #fedora/rhel/rocky/alma/etc.
-	  sudo dnf install "$@"   
+    sudo dnf install "$@"
   elif [ -f "/usr/bin/portage" ]; then #gentoo
-	  sudo emerge "$@"
+    sudo emerge "$@"
   elif [ -f "/usr/bin/zypper" ]; then #openSUSE
-	  sudo zypper install "$@"
+    sudo zypper install "$@"
   elif [ -f "/usr/bin/apk" ]; then #Alpine
-	  sudo apk add "$@"
+    sudo apk add "$@"
   else
     echo "Error: No supported package manager found."
     return 1
@@ -68,20 +67,20 @@ pkg_install() {
 pkg_uninstall() {
   if [ -f "/usr/bin/pacman" ]; then
     sudo pacman -R "$@"
-  elif [ -f "/usr/local/bin/brew" || -f "/opt/homebrew/bin/brew" ]; then
+  elif [ -f "/usr/local/bin/brew" ] || [ -f "/opt/homebrew/bin/brew" ]; then
     brew uninstall "$@"
   elif [ -f "/usr/bin/dpkg" ]; then
     sudo apt remove "$@"
   elif [ -f "/usr/bin/xbps-install" ]; then
     sudo xbps-remove "$@"
-  elif [-f "/usr/bin/dnf" ]; then
-	  sudo dnf remove "$@"
-  elif [-f "/usr/bin/portage" ]; then
-	  sudo emerge --deselect "$@"
+  elif [ -f "/usr/bin/dnf" ]; then
+    sudo dnf remove "$@"
+  elif [ -f "/usr/bin/portage" ]; then
+    sudo emerge --deselect "$@"
   elif [ -f "/usr/bin/zypper" ]; then
-	  sudo zypper remove "$@"
+    sudo zypper remove "$@"
   elif [ -f "/usr/bin/apk" ]; then
-	  sudo apk del "$@"
+    sudo apk del "$@"
   else
     echo "Error: No supported package manager found."
     return 1
@@ -91,20 +90,20 @@ pkg_uninstall() {
 pkg_upgrade() {
   if [ -f "/usr/bin/pacman" ]; then
     sudo pacman -Syu
-  elif [ -f "/usr/local/bin/brew" || -f "/opt/homebrew/bin/brew" ]; then
+  elif [ -f "/usr/local/bin/brew" ] || [ -f "/opt/homebrew/bin/brew" ]; then
     brew upgrade
   elif [ -f "/usr/bin/dpkg" ]; then
     sudo apt update && sudo apt upgrade
   elif [ -f "/usr/bin/xbps-install" ]; then
     sudo xbps-install -Su
-  elif [-f "/usr/bin/dnf" ]; then
-	  sudo dnf upgrade
-  elif [-f "/usr/bin/portage" ]; then
-	  sudo emerge -uD @world
+  elif [ -f "/usr/bin/dnf" ]; then
+    sudo dnf upgrade
+  elif [ -f "/usr/bin/portage" ]; then
+    sudo emerge -uD @world
   elif [ -f "/usr/bin/zypper" ]; then
-	  sudo zypper update
+    sudo zypper update
   elif [ -f "/usr/bin/apk" ]; then
-	  sudo apk upgrade
+    sudo apk upgrade
   else
     echo "Error: No supported package manager found."
     return 1
@@ -114,20 +113,20 @@ pkg_upgrade() {
 pkg_search() {
   if [ -f "/usr/bin/pacman" ]; then
     pacman -Ss "$@"
-  elif [ -f "/usr/local/bin/brew" || -f "/opt/homebrew/bin/brew" ]; then
+  elif [ -f "/usr/local/bin/brew" ] || [ -f "/opt/homebrew/bin/brew" ]; then
     brew search "$@"
   elif [ -f "/usr/bin/dpkg" ]; then
     apt search "$@"
   elif [ -f "/usr/bin/xbps-install" ]; then
     xbps-query -Rs "$@"
-  elif [-f "/usr/bin/dnf" ]; then
-	  dnf search "$@"
-  elif [-f "/usr/bin/portage" ]; then
-	  emerge --search "$@"
+  elif [ -f "/usr/bin/dnf" ]; then
+    dnf search "$@"
+  elif [ -f "/usr/bin/portage" ]; then
+    emerge --search "$@"
   elif [ -f "/usr/bin/zypper" ]; then
-	  zypper search "$@"
+    zypper search "$@"
   elif [ -f "/usr/bin/apk" ]; then
-	  apk search "$@"
+    apk search "$@"
   else
     echo "Error: No supported package manager found."
     return 1
@@ -141,21 +140,22 @@ alias findpkg="pkg_search"
 
 # snap packages
 if [ -f "/usr/bin/snap" ]; then
-	alias instsnap="sudo snap install $@"
-	alias uninstsnap="sudo snap remove $@"
-	alias findsnap="snap find $@"
-	alias updsnap="sudo snap refresh"
+  alias instsnap="sudo snap install $@"
+  alias uninstsnap="sudo snap remove $@"
+  alias findsnap="snap find $@"
+  alias updsnap="sudo snap refresh"
 fi
 
 # flatpak packages
 if [ -f "/usr/bin/flatpak" ]; then
-	alias instflat="flatpak install $@"
-	alias uninstflat="flatpak uninstall $@"
-	alias updflat="flatpak update"
-	alias findflat="flatpak search $@"
-	alias runflat="flatpak run $@"
+  alias instflat="flatpak install $@"
+  alias uninstflat="flatpak uninstall $@"
+  alias updflat="flatpak update"
+  alias findflat="flatpak search $@"
+  alias runflat="flatpak run $@"
 fi
 
+# password generator
 genpasswd() {
-      	tr -dc A-Za-z0-9_\{\}\[\]\!\@\#\$\%\&\?\<\> < /dev/urandom | head -c $1 | xargs
+  tr -dc A-Za-z0-9_\{\}\[\]\!\@\#\$\%\&\?\<\> </dev/urandom | head -c $1 | xargs
 }

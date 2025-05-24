@@ -63,10 +63,15 @@ git clone https://github.com/ohmyzsh/ohmyzsh $HOME/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # setup finished
-echo "dotfiles setup finished.\n"
+echo ""
+echo "dotfiles setup finished."
+echo ""
 echo "some stuff requires a manual install:"
 echo "- thefuck (install thefuck using your package manager/python pip)"
-echo "- vim-plug configured plugins (type `:PlugInstall` in vim)"
-echo "- fortune quotes on shell launch (install fortune-mod using your package manager)\n"
+echo "- vim-plug configured plugins (type :PlugInstall in vim)"
+echo "- fortune quotes on shell launch (install fortune or fortune-mod using your package manager)"
+echo ""
+echo "open a new terminal to load the new changes."
+echo ""
 echo "have fun!"
-
+echo ""

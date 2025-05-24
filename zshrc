@@ -13,7 +13,20 @@ if [ -d "$HOME/.oh-my-zsh" ]; then
 	DISABLE_UPDATE_PROMPT="true"
 	DISABLE_AUTO_TITLE="true"
 	COMPLETION_WAITING_DOTS="true"
-	plugins=(git brew colored-man-pages thefuck zsh-syntax-highlighting)
+	# Base plugins
+	plugins=(git colored-man-pages thefuck zsh-syntax-highlighting)
+
+	# Add distro-specific plugin
+	if [ -f "/usr/bin/pacman" ]; then
+		plugins+=(archlinux)
+	elif [ -f "/usr/local/bin/brew" ] || [ -f "/opt/homebrew/bin/brew" ]; then
+		plugins+=(brew)
+	elif [ -f "/usr/bin/dpkg" ]; then
+		plugins+=(debian)
+	elif [ -f "/usr/bin/dnf" ]; then
+		plugins+=(dnf)
+	fi
+
 	source $ZSH/oh-my-zsh.sh
 fi
 
@@ -47,7 +60,7 @@ fi
 
 # Terminal title
 case $TERM in
-	(*xterm* | *rxvt*)
+*xterm* | *rxvt*)
 
 	# Write some info to terminal title.
 	# This is seen when the shell prompts for input.
