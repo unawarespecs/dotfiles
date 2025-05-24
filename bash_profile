@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-#░░░░█▀▄░█▀█░█▀▀░█░█░░░░░█▀█░█▀▄░█▀█░█▀▀░▀█▀░█░░░█▀▀
-#░░░░█▀▄░█▀█░▀▀█░█▀█░░░░░█▀▀░█▀▄░█░█░█▀▀░░█░░█░░░█▀▀
-#░▀░░▀▀░░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░░▀░▀░▀▀▀░▀░░░▀▀▀░▀▀▀░▀▀▀
 
 if [[ $TERM_PROGRAM == "iTerm.app" ]]; then # iTerm stuff
 	source ~/.iterm2_shell_integration.bash
@@ -28,4 +25,3 @@ PANEL_FIFO=/tmp/panel-fifo
 #export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 #export LIBGL_ALWAYS_INDIRECT=1
 #xrdb -load $HOME/.Xresources
-

@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 #  ~/.zshenv
 
-export PATH=$PATH:$HOME/.local/bin
+export PATH=${PATH}:/var/lib/flatpak/exports/bin:$HOME/.local/bin:/sbin
 export EDITOR=/usr/bin/vim
 umask 022
 

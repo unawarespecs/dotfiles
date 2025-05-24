@@ -1,7 +1,4 @@
 #!/bin/bash
-#░░░░█▀▄░█▀█░█▀▀░█░█░█▀▄░█▀▀
-#░░░░█▀▄░█▀█░▀▀█░█▀█░█▀▄░█░░
-#░▀░░▀▀░░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -67,12 +64,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # fortune + greeting
-if [ -d "/Applications" ]; then # use /Applications to check if macOS is installed
-#	echo "hi, $USER" | toilet -f pagga | lolcat
+if [[ "$(uname -s)" == "Darwin" ]]; then
 	echo "$(/usr/local/bin/fortune)
     "
 else
-#	echo "hi, $USER" | toilet -f pagga | lolcat
 	echo "$(/usr/bin/fortune)
     "
 fi

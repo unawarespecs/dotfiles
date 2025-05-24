@@ -19,7 +19,6 @@ call plug#end()
 " --------------
 " End of plugins
 " --------------
-colorscheme elflord
 
 " ------
 " Misc.
